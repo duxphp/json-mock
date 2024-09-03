@@ -5,6 +5,7 @@
   "main": "src/app.ts",
   "type": "commonjs",
   "scripts": {
+    "build": "rimraf dist && tsc",
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts"
   },
   "keywords": [],
@@ -25,7 +26,13 @@
     "@types/express": "^4.17.21",
     "@types/node": "^22.5.2",
     "path": "^0.12.7",
+    "rimraf": "^6.0.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.5.4"
-  }
+  },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ]
 }
