@@ -17,3 +17,5 @@ app.listen(PORT, async () => {
   logger.info(`App is running at http://localhost:${PORT}`)
   routes(app)
 })
+
+exports.app = app
