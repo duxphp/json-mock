@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "start": "nodemon index.ts",
-    "build": "rimraf dist && tsc",
+    "build": "rimraf dist && tsc && mkdir -p dist/src/views && cp src/views/index.html dist/src/views/index.html",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist"
   },
