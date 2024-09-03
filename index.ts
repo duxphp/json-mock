@@ -20,4 +20,4 @@ app.listen(PORT, async () => {
   routes(app)
 })
 
-export default app
+module.exports = app
