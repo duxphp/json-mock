@@ -27,5 +27,5 @@ const PORT = 3000;
 app.listen(PORT, () => __awaiter(void 0, void 0, void 0, function* () {
     (0, routes_1.default)(app);
 }));
-exports.app = app;
+exports.default = app;
 //# sourceMappingURL=index.js.map
