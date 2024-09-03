@@ -13,19 +13,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const routes_1 = __importDefault(require("./src/routes"));
+const routes_1 = __importDefault(require("./routes"));
 const path_1 = __importDefault(require("path"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
-app.set('views', path_1.default.join(__dirname, './src/views'));
+app.set('views', path_1.default.join(__dirname, './views'));
 app.engine('.html', require('ejs').__express);
 app.set('view engine', 'html');
 app.use(express_1.default.json());
-const PORT = 3000;
+const PORT = 5173;
 // 启动
 app.listen(PORT, () => __awaiter(void 0, void 0, void 0, function* () {
     (0, routes_1.default)(app);
 }));
-module.exports = app;
-//# sourceMappingURL=index.js.map
+exports.default = app;
+//# sourceMappingURL=app.js.map
