@@ -24,8 +24,8 @@ app.set('view engine', 'html');
 app.use(express_1.default.json());
 const PORT = 5173;
 // 启动
-app.listen(PORT, () => __awaiter(void 0, void 0, void 0, function* () {
+const apps = app.listen(PORT, () => __awaiter(void 0, void 0, void 0, function* () {
     (0, routes_1.default)(app);
 }));
-exports.default = app;
+exports.default = apps;
 //# sourceMappingURL=app.js.map
