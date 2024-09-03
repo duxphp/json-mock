@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const routes_1 = __importDefault(require("./src/routes"));
-const logger_1 = __importDefault(require("./src/utils/logger"));
 const path_1 = __importDefault(require("path"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
@@ -26,7 +25,6 @@ app.use(express_1.default.json());
 const PORT = 3000;
 // 启动
 app.listen(PORT, () => __awaiter(void 0, void 0, void 0, function* () {
-    logger_1.default.info(`App is running at http://localhost:${PORT}`);
     (0, routes_1.default)(app);
 }));
 exports.app = app;
