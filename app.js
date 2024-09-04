@@ -17,8 +17,6 @@ app.engine('.html', require('ejs').__express)
 app.set('view engine', 'html')
 app.use(express.json())
 
-app.listen(5000, async () => {
+app.listen(3000, async () => {
   routes(app)
 })
-
-export default app
