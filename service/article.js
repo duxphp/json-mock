@@ -1,11 +1,10 @@
-import { Express, Request, Response, Router } from 'express'
-import { body, validationResult } from 'express-validator'
-import { validateError } from '../utils/response'
+import { body } from 'express-validator'
+import { validateError } from '../utils/response.js'
 
-export function articleRoutes(app: Express) {
+export function articleRoutes(app) {
   app.post('/api/article',  [
     body('title').exists()
-  ], (req: Request, res: Response) => {
+  ], (req, res) => {
     const error = validateError(req, res)
     if (error) {
       return
@@ -18,7 +17,7 @@ export function articleRoutes(app: Express) {
 
   app.put('/api/article',  [
     body('title').exists()
-  ], (req: Request, res: Response) => {
+  ], (req, res) => {
     const error = validateError(req, res)
     if (error) {
       return
@@ -29,14 +28,14 @@ export function articleRoutes(app: Express) {
     })
   })
 
-  app.patch('/api/article', (req: Request, res: Response) => {
+  app.patch('/api/article', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok'
     })
   })
 
-  app.delete('/api/article', (req: Request, res: Response) => {
+  app.delete('/api/article', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok'

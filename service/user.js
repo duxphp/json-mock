@@ -1,12 +1,11 @@
-import { Express, Request, Response, Router } from 'express'
-import { body, validationResult } from 'express-validator'
-import { validateError } from '../utils/response'
+import { body } from 'express-validator'
+import { validateError } from '../utils/response.js'
 
-export function userRoutes(app: Express) {
+export function userRoutes(app) {
   app.post('/api/user',  [
     body('nickname').exists(),
     body('email').exists()
-  ], (req: Request, res: Response) => {
+  ], (req, res) => {
     const error = validateError(req, res)
     if (error) {
       return
@@ -20,7 +19,7 @@ export function userRoutes(app: Express) {
   app.put('/api/user',  [
     body('nickname').exists(),
     body('email').exists()
-  ], (req: Request, res: Response) => {
+  ], (req, res) => {
     const error = validateError(req, res)
     if (error) {
       return
@@ -31,14 +30,14 @@ export function userRoutes(app: Express) {
     })
   })
 
-  app.patch('/api/user', (req: Request, res: Response) => {
+  app.patch('/api/user', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok'
     })
   })
 
-  app.delete('/api/user', (req: Request, res: Response) => {
+  app.delete('/api/user', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok'

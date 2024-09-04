@@ -1,17 +1,15 @@
-import { Express, Request, Response, Router } from 'express'
-import dbJson from '../../db.json'
-import { articleRoutes } from '../service/article'
-import { mallRoutes } from '../service/mall'
-import { userRoutes } from '../service/user'
-import { authRoutes } from '../service/auth'
-const db = dbJson as Record<string, any>
+import db from '../db.json' with { type: 'json' }
+import { articleRoutes } from '../service/article.js'
+import { mallRoutes } from '../service/mall.js'
+import { userRoutes } from '../service/user.js'
+import { authRoutes } from '../service/auth.js'
 
-function routes(app: Express) {
+function routes(app) {
   
-  app.get('/', (req: Request, res: Response) => {
+  app.get('/', (req, res) => {
 
 
-    const data: Record<string, any> = {}
+    const data = {}
 
     data.apiList = [
       {
@@ -159,19 +157,19 @@ function routes(app: Express) {
   userRoutes(app)
   authRoutes(app)
 
-  app.get('/api/:resource', (req: Request, res: Response) => {
+  app.get('/api/:resource', (req, res) => {
     
     const queryParams = req.query
     const limit = Number(req.query?.pageSize)
     const page = Number(req.query?.page) || 1
-    const resource = req.params.resource as string
+    const resource = req.params.resource 
     let data = db[resource]
-    const meta: Record<string, any> = {}
+    const meta = {}
 
     const isArray = Array.isArray(data)
 
     if (isArray) {
-      data = data.filter((item: Record<string, any>) => {
+      data = data.filter((item) => {
         for (const key in queryParams) {
           if (key.endsWith('_sort') || key === 'pageSize' || key === 'page') {
             continue
@@ -192,7 +190,7 @@ function routes(app: Express) {
       data = data.slice(start, end)
     }
 
-    const sortParams: Record<string, any> = {};
+    const sortParams = {};
     for (const key in queryParams) {
       if (key.endsWith('_sort')) {
         const newKey = key.slice(0, -5)
@@ -203,7 +201,7 @@ function routes(app: Express) {
     for (const key in sortParams) {
         const sort = sortParams[key]
         if (sort === 'asc') {
-          data = data.sort((a: Record<string, any>, b: Record<string, any>) => {
+          data = data.sort((a, b) => {
             if (a[key] > b[key]) {
               return 1
             }
@@ -214,7 +212,7 @@ function routes(app: Express) {
           })
         }
         if (sort === 'desc') {
-          data = data.sort((a: Record<string, any>, b: Record<string, any>) => {
+          data = data.sort((a, b) => {
             if (a[key] > b[key]) {
               return -1
             }
@@ -234,10 +232,10 @@ function routes(app: Express) {
     })
   })
 
-  app.get('/api/:resource/:id', (req: Request, res: Response) => {
+  app.get('/api/:resource/:id', (req, res) => {
     const resource = req.params.resource
     const id = req.params.id
-    const data = db[resource].find((item: Record<string, any>) => item.id == id)
+    const data = db[resource].find((item) => item.id == id)
     res.status(200).json({
       code: 200,
       message: 'ok',

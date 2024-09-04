@@ -1,11 +1,10 @@
-import { Express, Request, Response, Router } from 'express'
-import { body, validationResult } from 'express-validator'
-import { validateError } from '../utils/response'
+import { body } from 'express-validator'
+import { validateError } from '../utils/response.js'
 
-export function mallRoutes(app: Express) {
+export function mallRoutes(app) {
   app.post('/api/mall',  [
     body('title').exists()
-  ], (req: Request, res: Response) => {
+  ], (req, res) => {
     const error = validateError(req, res)
     if (error) {
       return
@@ -18,7 +17,7 @@ export function mallRoutes(app: Express) {
 
   app.put('/api/mall',  [
     body('title').exists()
-  ], (req: Request, res: Response) => {
+  ], (req, res) => {
     const error = validateError(req, res)
     if (error) {
       return
@@ -29,14 +28,14 @@ export function mallRoutes(app: Express) {
     })
   })
 
-  app.patch('/api/mall', (req: Request, res: Response) => {
+  app.patch('/api/mall', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok'
     })
   })
 
-  app.delete('/api/mall', (req: Request, res: Response) => {
+  app.delete('/api/mall', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok'

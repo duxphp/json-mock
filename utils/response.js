@@ -1,10 +1,9 @@
-import { Express, Request, Response, Router } from 'express'
-import { body, validationResult } from 'express-validator'
+import { validationResult } from 'express-validator'
 
-export const validateError = (req: Request, res: Response) => {
+export const validateError = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    const data: Record<string, string[]> = {}
+    const data = {}
     const fieldErrors = errors.mapped()
     for (const key in fieldErrors) {
       if (!data[key]) {

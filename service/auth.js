@@ -1,13 +1,12 @@
-import { Express, Request, Response, Router } from 'express'
-import { body, validationResult } from 'express-validator'
-import { validateError } from '../utils/response'
+import { body } from 'express-validator'
+import { validateError } from '../utils/response.js'
 
-export function authRoutes(app: Express) {
+export function authRoutes(app) {
   app.post('/api/login',  [
     body('username').exists(),
     body('password').exists(),
     body('code').exists()
-  ], (req: Request, res: Response) => {
+  ], (req, res) => {
     const error = validateError(req, res)
     if (error) {
       return
@@ -28,7 +27,7 @@ export function authRoutes(app: Express) {
     })
   })
 
-  app.get('/api/check', (req: Request, res: Response) => {
+  app.get('/api/check', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok',
@@ -45,22 +44,21 @@ export function authRoutes(app: Express) {
     })
   })
 
-  app.post('/api/logout', (req: Request, res: Response) => {
+  app.post('/api/logout', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok'
     })
   })
 
-  app.get('/api/captcha', (req: Request, res: Response) => {
+  app.get('/api/captcha', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok'
     })
   })
 
-
-  app.post('/api/captcha', (req: Request, res: Response) => {
+  app.post('/api/captcha', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok'
