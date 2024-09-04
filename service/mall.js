@@ -15,7 +15,7 @@ export function mallRoutes(app) {
     })
   })
 
-  app.put('/api/mall',  [
+  app.put('/api/mall/:id',  [
     body('title').exists()
   ], (req, res) => {
     const error = validateError(req, res)
@@ -28,14 +28,14 @@ export function mallRoutes(app) {
     })
   })
 
-  app.patch('/api/mall', (req, res) => {
+  app.patch('/api/mall/:id', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok'
     })
   })
 
-  app.delete('/api/mall', (req, res) => {
+  app.delete('/api/mall/:id', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok'

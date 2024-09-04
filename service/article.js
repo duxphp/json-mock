@@ -2,7 +2,7 @@ import { body } from 'express-validator'
 import { validateError } from '../utils/response.js'
 
 export function articleRoutes(app) {
-  app.post('/api/article',  [
+  app.post('/api/article/:id',  [
     body('title').exists()
   ], (req, res) => {
     const error = validateError(req, res)
@@ -15,7 +15,7 @@ export function articleRoutes(app) {
     })
   })
 
-  app.put('/api/article',  [
+  app.put('/api/article/:id',  [
     body('title').exists()
   ], (req, res) => {
     const error = validateError(req, res)
@@ -28,14 +28,14 @@ export function articleRoutes(app) {
     })
   })
 
-  app.patch('/api/article', (req, res) => {
+  app.patch('/api/article/:id', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok'
     })
   })
 
-  app.delete('/api/article', (req, res) => {
+  app.delete('/api/article/:id', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok'

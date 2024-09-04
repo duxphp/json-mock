@@ -30,14 +30,14 @@ export function userRoutes(app) {
     })
   })
 
-  app.patch('/api/user', (req, res) => {
+  app.patch('/api/user/:id', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok'
     })
   })
 
-  app.delete('/api/user', (req, res) => {
+  app.delete('/api/user/:id', (req, res) => {
     res.status(200).json({
       code: 200,
       message: 'ok'
