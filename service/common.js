@@ -22,7 +22,7 @@ export function commonRoutes(app) {
     })
   })
 
-  const filePath = path.join(__dirname, 'example.txt');
+  const filePath = './example.txt';
 
   app.post('/api/download', (req, res) => {
     const fileName = '示例文本.txt';

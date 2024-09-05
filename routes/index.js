@@ -3,6 +3,7 @@ import { articleRoutes } from '../service/article.js'
 import { mallRoutes } from '../service/mall.js'
 import { userRoutes } from '../service/user.js'
 import { authRoutes } from '../service/auth.js'
+import { commonRoutes } from '../service/common.js'
 
 function routes(app) {
   
@@ -172,6 +173,7 @@ function routes(app) {
   mallRoutes(app)
   userRoutes(app)
   authRoutes(app)
+  commonRoutes(app)
 
   app.get('/api/:resource', (req, res) => {
     
