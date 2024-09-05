@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dux Mock</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css" />
+  <script defer src="https://unpkg.com/@ryangjchandler/alpine-tooltip@2.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://unpkg.com/@ryangjchandler/alpine-clipboard@2.x.x/dist/alpine-clipboard.js"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <style>
     [un-cloak] {
       display: none;
@@ -18,27 +22,51 @@
   </style>
 </head>
 
-<body un-cloak class="bg-gray-2 flex items-center justify-center py-10 px-10">
+<body un-cloak class="bg-gray-2 flex items-center justify-center py-6 px-6">
   <div class="max-w-2xl w-full bg-white rounded shadow-sm">
     <div class="py-4 px-4 flex justify-between items-center border-b border-gray-2">
       <div class="text-xl font-bold">Dux Mock</div>
       <div class="text-gray-4 text-sm">前端模拟数据服务</div>
     </div>
-    <div class="p-8 flex flex-col gap-8 ">
+    <div class="p-8 flex flex-col gap-8 " x-data="{
+      input: 'dsad',
+      copied: (content) => {
+        const initButtonText = $refs.button.innerHTML
+        $refs.button.innerHTML = content;
+        setTimeout(() => $refs.button.innerHTML = initButtonText, 1500)
+      }
+    }">
+      <input class="hidden" x-model="input">
       <div class="bg-blue-50 border-1 border-blue-4 text-blue-6 p-4 rounded text-sm">
         本站数据为 AI 生成的随机数据，仅作为测试使用，数据格式为 Dux Vue Admin 适配后端数据的标准格式，并且增删改均为模拟操作，不做实质性改变。
       </div>
 
       <% apiList.forEach(function(api){ %>
-      <div class="flex flex-col gap-4 ">
-        <div class="text-lg border-b border-gray-2 pb-2 px-4"><%= api.title; %></div>
-          <div class="flex flex-col gap-2 px-4">
+      <div class="flex flex-col">
+        <div class="text-lg border-b border-gray-1 pb-2 flex gap-3 items-center">
+          <div class="h-4 w-1 bg-blue-7"></div>
+          <div><%= api.title; %></div>  
+        </div>
+          <div class="flex flex-col px-4 divide-y divide-gray-1">
             <% api.list.forEach(function(item){ %>
-            <div class="flex gap-4">
-              <div class="w-100px"><%= item.title; %></div>
-              <div class="w-100px text-gray-5"><%= item.method; %></div>
-              <div class="text-gray-5">
-                <%= item.path; %>
+            <div class="flex py-3 items-center">
+              <div class="flex gap-2 flex-1">
+                <div class="text-gray-8"><%= item.title; %></div>
+                <div class="flex gap-2 ">
+                  <div class="
+                   <%= item.method === 'GET' ? 'text-blue-6' : ''; %>
+                   <%= item.method === 'POST' ? 'text-green-6' : ''; %>
+                   <%= item.method === 'PUT' ? 'text-yellow-6' : ''; %>
+                   <%= item.method === 'PATCH' ? 'text-pink-6' : ''; %>
+                   <%= item.method === 'DELETE' ? 'text-red-6' : ''; %>
+                   "><%= item.method; %></div>
+                  <div class="text-gray-4">
+                    <%= item.path; %>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <a href="javascript:;"  class="text-blue-6 text-sm" x-clipboard.raw="<%= item.path; %>" @click="$tooltip('复制成功')">复制</a>
               </div>
             </div>
             <% }); %>

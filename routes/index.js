@@ -146,6 +146,22 @@ function routes(app) {
             path: '/api/check'
           }
         ]
+      },
+
+      {
+        title: '其他',
+        list: [
+          {
+            title: '上传文件',
+            method: 'POST',
+            path: '/api/upload'
+          },
+          {
+            title: '下载文件',
+            method: 'POST',
+            path: '/api/download'
+          }
+        ]
       }
     ]
 
@@ -171,10 +187,11 @@ function routes(app) {
     if (isArray) {
       data = data.filter((item) => {
         for (const key in queryParams) {
+          const value = queryParams[key]
           if (key.endsWith('_sort') || key === 'pageSize' || key === 'page') {
             continue
           }
-          if (item[key] !== queryParams[key]) {
+          if (item[key] !== undefined && value && !item[key].includes(value)) {
             return false
           }
         }
