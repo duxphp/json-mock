@@ -176,7 +176,12 @@ function routes(app) {
             title: '下载文件',
             method: 'POST',
             path: '/api/download'
-          }
+          },
+          {
+            title: '省市区',
+            method: 'GET',
+            path: '/api/area'
+          },
         ]
       }
     ]
