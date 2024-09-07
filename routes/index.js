@@ -193,7 +193,7 @@ function routes(app) {
           if (key.endsWith('_sort') || key === 'pageSize' || key === 'page') {
             continue
           }
-          if (item[key] !== undefined && value && !item[key].includes(value)) {
+          if (item[key] !== undefined && value &&  item[key] != value && !item[key]?.includes?.(value)) {
             return false
           }
         }
