@@ -84,6 +84,21 @@ function routes(app) {
         ]
       },
       {
+        title: '树形分类',
+        list: [
+          {
+            title: '列表',
+            method: 'GET',
+            path: '/api/class'
+          },
+          {
+            title: '详情',
+            method: 'GET',
+            path: '/api/class/:id'
+          },
+        ]
+      },
+      {
         title: '用户',
         list: [
           {
