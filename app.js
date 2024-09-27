@@ -11,7 +11,13 @@ const __dirname = dirname(__filename)
 
 const app = express()
 
-app.use(cors())
+app.all('*',function(req,res,next) {
+  res.header("Access-Control-Allow-Origin","*");
+  res.header('Access-Control-Allow-Methods','*');
+  res.header("Access-Control-Allow-Headers","*");
+  next();
+})
+
 app.set('views', join(__dirname, './views'))
 app.engine('.html', require('ejs').__express)
 app.set('view engine', 'html')

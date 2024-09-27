@@ -4,6 +4,7 @@ import { mallRoutes } from '../service/mall.js'
 import { userRoutes } from '../service/user.js'
 import { authRoutes } from '../service/auth.js'
 import { commonRoutes } from '../service/common.js'
+import { regionRoutes } from '../service/region.js'
 
 function routes(app) {
   
@@ -194,6 +195,7 @@ function routes(app) {
   userRoutes(app)
   authRoutes(app)
   commonRoutes(app)
+  regionRoutes(app)
 
   app.get('/api/:resource', (req, res) => {
     
